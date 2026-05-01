@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат аналізу</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex items-center justify-center">
+
+<div class="max-w-2xl w-full mx-auto bg-white rounded-3xl shadow-xl p-10 border border-slate-200">
+
+    <h1 class="text-4xl font-bold text-center text-blue-700 mb-8">
+        Результат аналізу
+    </h1>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 mb-8">
+        <p class="text-slate-500 text-sm">Файл:</p>
+        <p class="text-xl font-medium text-slate-800" th:text="${filename}"></p>
+
+        <p class="text-slate-500 mt-6 text-sm">Розпізнаний текст:</p>
+        <p class="text-lg italic text-slate-700" th:text="${text}"></p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6 text-center">
+        <!-- Тональність -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <p class="text-slate-500 text-sm">ТОНАЛЬНІСТЬ</p>
+            <p th:text="${result.polarity}"
+               class="text-5xl font-bold mt-2"
+               th:class="${result.polarity == 'NEGATIVE' ? 'text-rose-600' :
+                               result.polarity == 'POSITIVE' ? 'text-emerald-600' : 'text-amber-600'}">
+            </p>
+        </div>
+
+        <!-- Рівень стресу -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <p class="text-slate-500 text-sm">РІВЕНЬ СТРЕСУ</p>
+            <p th:text="${result.stressLevel}" class="text-5xl font-bold text-rose-600 mt-2"></p>
+        </div>
+
+        <!-- Впевненість -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <p class="text-slate-500 text-sm">ВПЕВНЕНІСТЬ</p>
+            <p th:text="${result.confidence}" class="text-5xl font-bold text-blue-600 mt-2"></p>
+        </div>
+    </div>
+
+    <div class="flex justify-center gap-6 mt-12">
+        <a href="/"
+           class="px-8 py-4 bg-slate-200 hover:bg-slate-300 rounded-2xl font-medium transition">
+            Новий аналіз
+        </a>
+        <a href="/history"
+           class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-medium transition">
+            Перейти до історії
+        </a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>F1 Pilot Sentiment Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+<div class="max-w-4xl mx-auto pt-16 px-6">
+
+    <!-- Заголовок -->
+    <h1 class="text-5xl font-bold text-center text-blue-700 mb-2 tracking-tight">
+        F1 PILOT SENTIMENT
+    </h1>
+    <p class="text-center text-xl text-slate-600 mb-12">
+        Аналіз емоційного стану пілотів Формули 1 у реальному часі
+    </p>
+
+    <!-- Основна форма -->
+    <div class="bg-white border border-slate-200 rounded-3xl p-10 shadow-lg">
+        <form th:action="@{/analyze-audio}" method="post" enctype="multipart/form-data" class="space-y-8">
+
+            <div>
+                <label class="block text-sm text-slate-600 mb-2 font-medium">
+                    Аудіофайл радіообміну (.wav)
+                </label>
+
+                <!-- Кастомна кнопка "Вибери файл" -->
+                <label for="file-upload"
+                       class="flex items-center justify-center w-full h-14 border-2 border-dashed border-slate-300
+                                  hover:border-blue-400 rounded-2xl cursor-pointer transition-colors">
+                        <span class="text-slate-700 font-medium flex items-center gap-3">
+                            <i class="fa-solid fa-cloud-upload-alt text-2xl"></i>
+                            Вибери файл
+                        </span>
+                </label>
+                <input id="file-upload" type="file" name="file" accept=".wav" required class="hidden"/>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm text-slate-600 mb-2 font-medium">
+                        Пілот ID
+                    </label>
+                    <input type="text" name="pilotId" value="LEC"
+                           class="w-full bg-white border border-slate-300 rounded-2xl px-6 py-4
+                                      focus:outline-none focus:border-blue-500 text-lg shadow-sm">
+                </div>
+            </div>
+
+            <button type="submit"
+                    class="w-full py-6 text-xl font-semibold bg-blue-600 hover:bg-blue-700
+                               text-white transition-all rounded-3xl shadow-md">
+                🚀 Аналізувати аудіофайл
+            </button>
+        </form>
+    </div>
+
+    <!-- Посилання внизу -->
+    <div class="flex justify-center gap-8 mt-12 text-slate-600">
+        <a href="/history" class="flex items-center gap-3 hover:text-blue-600 transition text-lg">
+            <span class="text-3xl">📜</span> Історія аналізів
+        </a>
+    </div>
+</div>
+</body>
+</html>
